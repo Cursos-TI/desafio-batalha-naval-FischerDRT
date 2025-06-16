@@ -3,7 +3,7 @@
 #define TAMANHO_TABULEIRO 10
 #define TAMANHO_NAVIO 3
 
-// Função para inicializar o tabuleiro com água (0)
+// Função para inicializar o tabuleiro com água
 void inicializarTabuleiro(int tabuleiro[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO]) {
     for (int i = 0; i < TAMANHO_TABULEIRO; i++) {
         for (int j = 0; j < TAMANHO_TABULEIRO; j++) {
@@ -36,7 +36,7 @@ int posicionarNavioHorizontal(int tabuleiro[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO
         return 0;
     }
 
-
+    // Valida se há sobreposição
     for (int j = 0; j < TAMANHO_NAVIO; j++) {
         if (tabuleiro[linha][coluna + j] == 3) {
             printf("Erro: Sobreposição de navios no posicionamento horizontal.\n");
@@ -66,3 +66,45 @@ int posicionarNavioVertical(int tabuleiro[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO],
             return 0;
         }
     }
+
+    // Posiciona o navio
+    for (int i = 0; i < TAMANHO_NAVIO; i++) {
+        tabuleiro[linha + i][coluna] = 3; // 3 representa parte do navio
+    }
+    return 1;
+}
+
+int main() {
+    int tabuleiro[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO];
+
+    inicializarTabuleiro(tabuleiro);
+
+    int linhaNavioHorizontal = 1; // Linha 2 do usuário
+    int colunaNavioHorizontal = 0; // Coluna A do usuário
+
+    int linhaNavioVertical = 3; // Linha 4 do usuário
+    int colunaNavioVertical = 4; // Coluna E do usuário
+
+    printf("Tabuleiro inicial:\n");
+    exibirTabuleiro(tabuleiro);
+    printf("\n");
+
+
+    if (posicionarNavioHorizontal(tabuleiro, linhaNavioHorizontal, colunaNavioHorizontal)) {
+        printf("Navio horizontal posicionado com sucesso em (%d, %c).\n", linhaNavioHorizontal + 1, 'A' + colunaNavioHorizontal);
+    } else {
+        printf("Falha ao posicionar navio horizontal.\n");
+    }
+
+
+    if (posicionarNavioVertical(tabuleiro, linhaNavioVertical, colunaNavioVertical)) {
+        printf("Navio vertical posicionado com sucesso em (%d, %c).\n", linhaNavioVertical + 1, 'A' + colunaNavioVertical);
+    } else {
+        printf("Falha ao posicionar navio vertical.\n");
+    }
+
+    printf("\nTabuleiro final:\n");
+    exibirTabuleiro(tabuleiro);
+
+    return 0;
+}
