@@ -29,7 +29,6 @@ void exibirTabuleiro(int tabuleiro[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO]) {
 }
 
 // Função para posicionar um navio horizontalmente
-// Retorna 1 se o posicionamento for bem-sucedido, 0 caso contrário
 int posicionarNavioHorizontal(int tabuleiro[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO], int linha, int coluna) {
     // Valida se o navio está dentro dos limites do tabuleiro
     if (linha < 0 || linha >= TAMANHO_TABULEIRO || coluna < 0 || coluna + TAMANHO_NAVIO > TAMANHO_TABULEIRO) {
@@ -37,7 +36,7 @@ int posicionarNavioHorizontal(int tabuleiro[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO
         return 0;
     }
 
-    // Valida se há sobreposição
+
     for (int j = 0; j < TAMANHO_NAVIO; j++) {
         if (tabuleiro[linha][coluna + j] == 3) {
             printf("Erro: Sobreposição de navios no posicionamento horizontal.\n");
@@ -53,7 +52,6 @@ int posicionarNavioHorizontal(int tabuleiro[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO
 }
 
 // Função para posicionar um navio verticalmente
-// Retorna 1 se o posicionamento for bem-sucedido, 0 caso contrário
 int posicionarNavioVertical(int tabuleiro[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO], int linha, int coluna) {
     // Valida se o navio está dentro dos limites do tabuleiro
     if (linha < 0 || linha + TAMANHO_NAVIO > TAMANHO_TABULEIRO || coluna < 0 || coluna >= TAMANHO_TABULEIRO) {
@@ -61,7 +59,7 @@ int posicionarNavioVertical(int tabuleiro[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO],
         return 0;
     }
 
-    // Valida se há sobreposição
+
     for (int i = 0; i < TAMANHO_NAVIO; i++) {
         if (tabuleiro[linha + i][coluna] == 3) {
             printf("Erro: Sobreposição de navios no posicionamento vertical.\n");
